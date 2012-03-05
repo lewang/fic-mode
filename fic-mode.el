@@ -45,7 +45,7 @@
   "Words to highlight"
   :group 'fic-mode)
 
-(defcustom fic-author-name-regexp "[a-zA-Z0-9_\\.]+"
+(defcustom fic-author-name-regexp "[-a-zA-Z0-9_.]+"
   "Regexp describing FIXME/TODO author name"
   :group 'fic-mode)
 
