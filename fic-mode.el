@@ -3,6 +3,9 @@
 ;;
 ;; Copyright (C) 2010, Trey Jackson <bigfaceworm(at)gmail(dot)com>
 ;; Copyright (C) 2010, Ivan Korotkov <twee(at)tweedle-dee(dot)org>
+;; Copyright (C) 2012, Le Wang
+;;
+;; Homepage: https://github.com/lewang/fic-mode
 ;;
 ;; This file is NOT part of Emacs.
 ;;
@@ -30,9 +33,6 @@
 ;; or
 ;;
 ;; M-x fic-mode
-;;
-;; NOTE: If you manually turn on fic-mode, you you might need to force re-fontification initially
-;;   M-x font-lock-fontify-buffer
 
 (defgroup fic-mode nil
   "Highlight FIXME/TODO(...) in comments"
