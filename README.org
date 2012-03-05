@@ -7,3 +7,6 @@ I've decided to rename it back to the canonical fic-mode.el.
 I would normally use `diminish', but it is really silly to have any
 highlighter for this mode.
 ** call font-lock-fontify-buffer in init
+* WHY U NO PROVIDE JUMP-TO functionality???
+
+Because you should use occur or anything-regexp.
