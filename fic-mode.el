@@ -1,4 +1,4 @@
-;;; fic-ext-mode.el --- Show FIXME/TODO/BUG(...) in special face only in comments and strings
+;;; fic-mode.el --- Show FIXME/TODO/BUG(...) in special face only in comments and strings
 ;;--------------------------------------------------------------------
 ;;
 ;; Copyright (C) 2010, Trey Jackson <bigfaceworm(at)gmail(dot)com>
@@ -21,20 +21,20 @@
 ;; Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 ;; MA 02111-1307 USA
 ;;
-;; To use, save fic-ext-mode.el to a directory in your load-path.
+;; To use, save fic-mode.el to a directory in your load-path.
 ;;
-;; (require 'fic-ext-mode)
-;; (add-hook 'c++-mode-hook 'turn-on-fic-ext-mode)
-;; (add-hook 'emacs-lisp-mode-hook 'turn-on-fic-ext-mode)
+;; (require 'fic-mode)
+;; (add-hook 'c++-mode-hook 'turn-on-fic-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'turn-on-fic-mode)
 ;;
 ;; or
 ;;
-;; M-x fic-ext-mode
+;; M-x fic-mode
 ;;
-;; NOTE: If you manually turn on fic-ext-mode, you you might need to force re-fontification initially
+;; NOTE: If you manually turn on fic-mode, you you might need to force re-fontification initially
 ;;   M-x font-lock-fontify-buffer
 
-(defgroup fic-ext-mode nil
+(defgroup fic-mode nil
   "Highlight FIXME/TODO(...) in comments"
   :tag "FIC"
   :group 'tools
@@ -43,11 +43,11 @@
 
 (defcustom fic-highlighted-words '("FIXME" "TODO" "BUG")
   "Words to highlight"
-  :group 'fic-ext-mode)
+  :group 'fic-mode)
 
 (defcustom fic-author-name-regexp "[a-zA-Z0-9_\\.]+"
   "Regexp describing FIXME/TODO author name"
-  :group 'fic-ext-mode)
+  :group 'fic-mode)
 
 (defconst font-lock-fic-face 'font-lock-fic-face
   "Face to fontify FIXME/TODO words")
@@ -57,7 +57,7 @@
      (:background "white" :foreground "red" :weight bold))
     (t (:weight bold)))
   "Face to fontify FIXME/TODO words"
-  :group 'fic-ext-mode)
+  :group 'fic-mode)
 
 (defconst font-lock-fic-author-face 'font-lock-fic-author-face
   "Face to fontify author/assignee of FIXME/TODO")
@@ -67,7 +67,7 @@
      (:background "white" :foreground "orangered" :underline t))
     (t (:underline t)))
   "Face to fontify author/assignee of FIXME/TODO"
-  :group 'fic-ext-mode)
+  :group 'fic-mode)
 
 (defun fic-search-re ()
   "Regexp to search for"
@@ -92,22 +92,22 @@
       (goto-char (match-end 0))
       t)))
 
-(defun fic-ext-mode-font-lock-keywords ()
-  "Font Lock keywords for fic-ext-mode"
+(defun fic-mode-font-lock-keywords ()
+  "Font Lock keywords for fic-mode"
   `((fic-search-for-keyword
     (1 ,font-lock-fic-face t)
     (2 ,font-lock-fic-author-face t t))))
 
 ;;;###autoload
-(define-minor-mode fic-ext-mode
+(define-minor-mode fic-mode
   "Fic mode -- minor mode for highlighting FIXME/TODO in comments"
-  :lighter " FIC" :group 'fic-ext-mode
-  (let ((kwlist (fic-ext-mode-font-lock-keywords)))
-    (if fic-ext-mode
+  :lighter " FIC" :group 'fic-mode
+  (let ((kwlist (fic-mode-font-lock-keywords)))
+    (if fic-mode
 	(font-lock-add-keywords nil kwlist 'append)
       (font-lock-remove-keywords nil kwlist))))
 
-;;;###autoload(add-hook 'c-mode-common-hook 'fic-ext-mode)
-;;;###autoload(add-hook 'python-mode-hook 'fic-ext-mode)
+;;;###autoload(add-hook 'c-mode-common-hook 'fic-mode)
+;;;###autoload(add-hook 'python-mode-hook 'fic-mode)
 
-(provide 'fic-ext-mode)
+(provide 'fic-mode)
