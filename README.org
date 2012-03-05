@@ -1,0 +1,9 @@
+* This is a fork of [[http://www.emacswiki.org/emacs/download/fic-ext-mode.el][fic-ext-mod.el]]
+
+I've decided to rename it back to the canonical fic-mode.el.
+
+* Other changes
+** remove lighter
+I would normally use `diminish', but it is really silly to have any
+highlighter for this mode.
+** call font-lock-fontify-buffer in init
