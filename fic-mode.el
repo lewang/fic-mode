@@ -101,7 +101,7 @@
 ;;;###autoload
 (define-minor-mode fic-mode
   "Fic mode -- minor mode for highlighting FIXME/TODO in comments"
-  :lighter " FIC" :group 'fic-mode
+  :lighter "" :group 'fic-mode
   (let ((kwlist (fic-mode-font-lock-keywords)))
     (if fic-mode
 	(progn(
