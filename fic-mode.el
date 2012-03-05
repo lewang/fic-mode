@@ -104,7 +104,9 @@
   :lighter " FIC" :group 'fic-mode
   (let ((kwlist (fic-mode-font-lock-keywords)))
     (if fic-mode
-	(font-lock-add-keywords nil kwlist 'append)
+	(progn(
+          font-lock-add-keywords nil kwlist 'append)
+          (font-lock-fontify-buffer))
       (font-lock-remove-keywords nil kwlist))))
 
 ;;;###autoload(add-hook 'c-mode-common-hook 'fic-mode)
