@@ -26,9 +26,17 @@
 ;;
 ;; To use, save fic-mode.el to a directory in your load-path.
 ;;
-;; (require 'fic-mode)
-;; (add-hook 'c++-mode-hook 'turn-on-fic-mode)
-;; (add-hook 'emacs-lisp-mode-hook 'turn-on-fic-mode)
+;;   (require 'fic-mode)
+;;
+;;   ;;; emacs 24
+;;   (add-hook 'prog-mode-hook 'fic-mode)
+;;
+;;   ;;; emacs 23 needs to add this to all programming modes you want this to be
+;;   ;;; enabled for.
+;;   ;;;
+;;   ;;; e.g.
+;;   (add-hook 'c++-mode-hook 'fic-mode)
+;;   (add-hook 'emacs-lisp-mode-hook 'fic-mode)
 ;;
 ;; or
 ;;
