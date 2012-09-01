@@ -113,10 +113,9 @@
   :group 'fic-mode
   (let ((kwlist (fic-mode-font-lock-keywords)))
     (if fic-mode
-	(progn
-          (font-lock-add-keywords nil kwlist 'append)
-          (font-lock-fontify-buffer))
-      (font-lock-remove-keywords nil kwlist))))
+	(font-lock-add-keywords nil kwlist 'append)
+      (font-lock-remove-keywords nil kwlist))
+    (font-lock-fontify-buffer)))
 
 ;;;###autoload(add-hook 'c-mode-common-hook 'fic-mode)
 ;;;###autoload(add-hook 'python-mode-hook 'fic-mode)
