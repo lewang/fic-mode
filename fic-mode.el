@@ -57,25 +57,24 @@
   "Regexp describing FIXME/TODO author name"
   :group 'fic-mode)
 
-(defconst font-lock-fic-face 'font-lock-fic-face
-  "Face to fontify FIXME/TODO words")
-
-(defface font-lock-fic-face
+(defface fic-face
   '((((class color))
      (:background "white" :foreground "red" :weight bold))
     (t (:weight bold)))
   "Face to fontify FIXME/TODO words"
   :group 'fic-mode)
 
-(defconst font-lock-fic-author-face 'font-lock-fic-author-face
-  "Face to fontify author/assignee of FIXME/TODO")
-
-(defface font-lock-fic-author-face
+(defface fic-author-face
   '((((class color))
      (:background "white" :foreground "orangered" :underline t))
     (t (:underline t)))
   "Face to fontify author/assignee of FIXME/TODO"
   :group 'fic-mode)
+
+(defvar fic-mode-font-lock-keywords '((fic-search-for-keyword
+                                       (1 'fic-face t)
+                                       (2 'fic-author-face t t))) 
+  "Font Lock keywords for fic-mode")
 
 (defun fic-search-re ()
   "Regexp to search for"
@@ -100,18 +99,12 @@
       (goto-char (match-end 0))
       t)))
 
-(defun fic-mode-font-lock-keywords ()
-  "Font Lock keywords for fic-mode"
-  `((fic-search-for-keyword
-    (1 ,font-lock-fic-face t)
-    (2 ,font-lock-fic-author-face t t))))
-
 ;;;###autoload
 (define-minor-mode fic-mode
   "Fic mode -- minor mode for highlighting FIXME/TODO in comments"
   :lighter ""
   :group 'fic-mode
-  (let ((kwlist (fic-mode-font-lock-keywords)))
+  (let ((kwlist fic-mode-font-lock-keywords))
     (if fic-mode
 	(font-lock-add-keywords nil kwlist 'append)
       (font-lock-remove-keywords nil kwlist))
