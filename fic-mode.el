@@ -78,7 +78,9 @@
 
 (defun fic-search-re ()
   "Regexp to search for"
-  (let ((fic-words-re (regexp-opt fic-highlighted-words t)))
+  (let ((fic-words-re (concat "\\_<"
+                              (regexp-opt fic-highlighted-words t)
+                              "\\_>")))
     (concat fic-words-re "\\(?:(\\(" fic-author-name-regexp "\\))\\)?")))
 
 (defun fic-in-doc/comment-region (pos)
