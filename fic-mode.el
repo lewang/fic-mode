@@ -60,7 +60,7 @@
 (defcustom fic-activated-faces
   '(font-lock-doc-face font-lock-string-face font-lock-comment-face)
   "Faces to look for to highlight words."
-  :group) 'fic-mode
+  :group 'fic-mode)
 
 (defface fic-face
   '((((class color))
