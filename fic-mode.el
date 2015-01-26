@@ -57,6 +57,11 @@
   "Regexp describing FIXME/TODO author name"
   :group 'fic-mode)
 
+(defcustom fic-activated-faces
+  '(font-lock-doc-face font-lock-string-face font-lock-comment-face)
+  "Faces to look for to highlight words."
+  :group) 'fic-mode
+
 (defface fic-face
   '((((class color))
      (:background "white" :foreground "red" :weight bold))
@@ -96,7 +101,7 @@
 
 (defun fic-in-doc/comment-region (pos)
   (memq (get-char-property pos 'face)
-	(list font-lock-doc-face font-lock-string-face font-lock-comment-face)))
+        fic-activated-faces))
 
 (defun fic-search-for-keyword (limit)
   (let ((match-data-to-set nil)
