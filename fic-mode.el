@@ -50,7 +50,7 @@
   :group 'faces)
 
 (defcustom fic-highlighted-words '("FIXME" "TODO" "BUG")
-  "Words to highlight"
+  "Words to highlight."
   :group 'fic-mode)
 
 (defcustom fic-author-name-regexp "[-a-zA-Z0-9_.]+"
@@ -76,12 +76,23 @@
                                        (2 'fic-author-face t t))) 
   "Font Lock keywords for fic-mode")
 
+(defvar fic-saved-hash nil
+  "(`fic-highlighted-words' . `fic-author-name-regexp')")
+(defvar fic-saved-regexp nil
+  "Regexp cache for `fic-saved-hash'")
+
 (defun fic-search-re ()
-  "Regexp to search for"
-  (let ((fic-words-re (concat "\\_<"
-                              (regexp-opt fic-highlighted-words t)
-                              "\\_>")))
-    (concat fic-words-re "\\(?:(\\(" fic-author-name-regexp "\\))\\)?")))
+  "Regexp to search for."
+  (let ((hash (cons fic-highlighted-words fic-author-name-regexp)))
+    (if (and fic-saved-hash
+           (equal fic-saved-hash hash))
+        fic-saved-regexp
+      (let ((fic-words-re (concat "\\<"
+                                  (regexp-opt fic-highlighted-words t)
+                                  "\\>")))
+        (setq fic-saved-hash hash
+              fic-saved-regexp (concat fic-words-re "\\(?:(\\(" fic-author-name-regexp "\\))\\)?"))
+        fic-saved-regexp))))
 
 (defun fic-in-doc/comment-region (pos)
   (memq (get-char-property pos 'face)
@@ -111,8 +122,5 @@
 	(font-lock-add-keywords nil kwlist 'append)
       (font-lock-remove-keywords nil kwlist))
     (font-lock-fontify-buffer)))
-
-;;;###autoload(add-hook 'c-mode-common-hook 'fic-mode)
-;;;###autoload(add-hook 'python-mode-hook 'fic-mode)
 
 (provide 'fic-mode)
