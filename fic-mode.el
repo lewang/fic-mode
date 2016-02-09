@@ -129,3 +129,4 @@
     (font-lock-fontify-buffer)))
 
 (provide 'fic-mode)
+;;; fic-mode.el ends here
