@@ -104,8 +104,7 @@
         fic-activated-faces))
 
 (defun fic-search-for-keyword (limit)
-  (let ((match-data-to-set nil)
-	found)
+  (let (match-data-to-set)
     (save-match-data
       (while (and (null match-data-to-set)
 		  (re-search-forward (fic-search-re) limit t))
